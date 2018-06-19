@@ -19,7 +19,7 @@ class RentalServiceTest extends TestCase
         $rentalType->setPrice(5.00);
 
         $rentalService = new RentalService();
-        $response = $rentalService->rent([$this->getBike()], $this->getCustomer(), [$rentalType]);
+        $response = $rentalService->rent([$this->getBike()], $this->getCustomer(), [$rentalType], [1]);
 
         $this->assertTrue($response);
     }
@@ -31,7 +31,7 @@ class RentalServiceTest extends TestCase
         $rentalType->setPrice(20.00);
 
         $rentalService = new RentalService();
-        $response = $rentalService->rent([$this->getBike()], $this->getCustomer(), [$rentalType]);
+        $response = $rentalService->rent([$this->getBike()], $this->getCustomer(), [$rentalType], [1]);
 
         $this->assertTrue($response);
     }
@@ -43,7 +43,7 @@ class RentalServiceTest extends TestCase
         $rentalType->setPrice(60.00);
 
         $rentalService = new RentalService();
-        $response = $rentalService->rent([$this->getBike()], $this->getCustomer(), [$rentalType]);
+        $response = $rentalService->rent([$this->getBike()], $this->getCustomer(), [$rentalType], [1]);
 
         $this->assertTrue($response);
     }
@@ -63,9 +63,21 @@ class RentalServiceTest extends TestCase
         $rentalType3->setPrice(60.00);
 
         $rentalService = new RentalService();
-        $response = $rentalService->rent([$this->getBike(), $this->getBike(), $this->getBike()], $this->getCustomer(), [$rentalType1, $rentalType2, $rentalType3]);
+        $response = $rentalService->rent([$this->getBike(), $this->getBike(), $this->getBike()], $this->getCustomer(), [$rentalType1, $rentalType2, $rentalType3], [1, 1, 1]);
 
         $this->assertTrue($response);
+    }
+
+    public function testRentalServiceByWeekNeedToFail()
+    {
+        $rentalType = new RentalType();
+        $rentalType->setName('Week');
+        $rentalType->setPrice(60.00);
+
+        $rentalService = new RentalService();
+        $response = $rentalService->rent([$this->getBike(), $this->getBike()], $this->getCustomer(), [$rentalType], [1]);
+
+        $this->assertFalse($response);
     }
 
     private function getCustomer() {

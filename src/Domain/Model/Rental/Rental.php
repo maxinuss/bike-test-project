@@ -35,6 +35,11 @@ class Rental
      */
     private $rentalType;
 
+    /**
+     * @var \Datetime $creationDate
+     */
+    private $creationDate;
+
     public function __construct()
     {
     }
@@ -118,6 +123,24 @@ class Rental
     public function getRentalType() : RentalType
     {
         return $this->rentalType;
+    }
+
+    /**
+     * @param \DateTime $creationDate
+     * @return Rental
+     */
+    public function setCreationDate(\DateTime $creationDate) : Rental
+    {
+        $this->creationDate = $creationDate;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreationDate() : \DateTime
+    {
+        return $this->creationDate;
     }
 
 }

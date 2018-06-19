@@ -37,10 +37,15 @@ class RentalService
      * @param Array $bikes
      * @param Customer $customer
      * @param Array $rentalTypes
+     * @param int $period
      * @return bool
      */
-    public function rent(Array $bikes, Customer $customer, Array $rentalTypes)
+    public function rent(Array $bikes, Customer $customer, Array $rentalTypes, Array $periods)
     {
+        if(count($bikes) != count($rentalTypes) && count($bikes) != count($periods)) {
+            return false;
+        }
+
         try {
             $amount = 0;
 
@@ -48,12 +53,13 @@ class RentalService
                 $rentalStatus = $this->fakeDoctrineRentalStatusRepository->findById(RentalStatus::CONFIRMED);
 
                 $rental = new Rental();
+                $rental->setCreationDate(new \DateTime());
                 $rental->setBike($bikes[$i]);
                 $rental->setCustomer($customer);
                 $rental->setRentalStatus($rentalStatus);
                 $rental->setRentalType($rentalTypes[$i]);
 
-                $amount += $rentalTypes[$i]->getPrice();
+                $amount += $rentalTypes[$i]->getPrice() * $periods[$i];
             }
 
             if(count($bikes) >= 3) {
