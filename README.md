@@ -3,7 +3,7 @@
 #### Folder structure
 This project is built using a DDD approach. 
 This leads to three main folders: (https://en.wikipedia.org/wiki/Domain-driven_design)
-* *Application*: uses cases, entrypoint to interact with the domain of the application. In order to *execute* a use case, there will be necessary to provide a dedicated request.
+* *Application*: services to interact with the domain of the application.
 * *Domain*: entities, domain exceptions and interfaces to handle domain layer.
 * *Infrastructure*: concrete implementations of the domain.
 #### Build Docker image
