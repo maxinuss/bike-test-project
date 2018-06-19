@@ -15,6 +15,11 @@ class RentalStatus
      */
     private $name;
 
+    /**
+     * Confirmed
+     */
+    const CONFIRMED = 1;
+
     public function __construct()
     {
     }
