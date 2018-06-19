@@ -23,3 +23,7 @@ docker run --name bike-php-container  -p 5720:80 -v C:\xampp\htdocs\test-project
 ```
 docker exec -it bike-php-container /bin/sh
 ```
+Inside Docker go to /var/www/html and run:
+```
+composer install
+```
