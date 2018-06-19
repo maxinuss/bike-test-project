@@ -22,6 +22,7 @@ class FakeDoctrineRentalRepository extends DoctrineMysqlRepository implements Re
      */
     public function add(Bike $bike, Customer $customer, RentalType $rentalType)
     {
+        return true;
     }
 
     /**
@@ -29,5 +30,6 @@ class FakeDoctrineRentalRepository extends DoctrineMysqlRepository implements Re
      */
     public function findById (int $id)
     {
+        return true;
     }
 }

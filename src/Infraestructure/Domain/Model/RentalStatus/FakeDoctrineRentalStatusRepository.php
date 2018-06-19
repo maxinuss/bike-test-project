@@ -1,21 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Infraestructure\Domain\Model\Bike;
+namespace App\Infraestructure\Domain\Model\RentalStatus;
 
-use App\Domain\Model\Bike\Bike;
-use App\Domain\Model\Bike\BikeRepository;
+use App\Domain\Model\RentalStatus\RentalStatusRepository;
 use App\Infraestructure\Domain\Model\DoctrineMysqlRepository;
 
 /*
  * I will not use database on this example.
  * */
-class FakeDoctrineBikeRepository extends DoctrineMysqlRepository implements BikeRepository
+class FakeDoctrineRentalStatusRepository extends DoctrineMysqlRepository implements RentalStatusRepository
 {
     /**
-     * @param Bike $bike
+     * @param string $name
      */
-    public function add(Bike $bike)
+    public function add(string $name)
     {
         return true;
     }
