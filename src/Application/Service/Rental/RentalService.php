@@ -4,8 +4,13 @@ declare(strict_types=1);
 namespace App\Application\Service\Rental;
 
 use App\Infraestructure\Application\Payment\Payment;
+
 use App\Domain\Model\Rental\Rental;
 use App\Domain\Model\RentalStatus\RentalStatus;
+use App\Domain\Model\RentalType\RentalType;
+use App\Domain\Model\Bike\Bike;
+use App\Domain\Model\Customer\Customer;
+
 use App\Infraestructure\Domain\Model\Rental\FakeDoctrineRentalRepository;
 use App\Infraestructure\Domain\Model\Bike\FakeDoctrineBikeRepository;
 use App\Infraestructure\Domain\Model\RentalType\FakeDoctrineRentalTypeRepository;
@@ -52,17 +57,14 @@ class RentalService
     }
 
     /**
-     * @param int $bikeId
-     * @param int $customerId
-     * @param int $rentalTypeId
+     * @param Bike $bike
+     * @param Customer $customer
+     * @param RentalType $rentalType
      * @return bool
      */
-    public function rent(int $bikeId, int $customerId, int $rentalTypeId)
+    public function rent(Bike $bike, Customer $customer, RentalType $rentalType)
     {
         try {
-            $bike = $this->fakeDoctrineBikeRepository->findById($bikeId);
-            $customer = $this->fakeDoctrineCustomerRepository->findById($customerId);
-            $rentalType = $this->fakeDoctrineRentalTypeRepository->findById($customerId);
             $rentalStatus = $this->fakeDoctrineRentalStatusRepository->findById(RentalStatus::CONFIRMED);
 
             $rental = new Rental();
@@ -75,7 +77,7 @@ class RentalService
             $paymentResponse = $payment->make($rentalType);
 
             if($paymentResponse) {
-                return $this->fakeDoctrineRentalRepository->add($rental);
+                return $this->fakeDoctrineRentalRepository->add($bike, $customer, $rentalType);
             } else {
                 return false;
             }

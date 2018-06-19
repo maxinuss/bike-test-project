@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Infraestructure\Domain\Model\RentalStatus;
 
+use App\Domain\Model\RentalStatus\RentalStatus;
 use App\Domain\Model\RentalStatus\RentalStatusRepository;
 use App\Infraestructure\Domain\Model\DoctrineMysqlRepository;
 
@@ -24,6 +25,10 @@ class FakeDoctrineRentalStatusRepository extends DoctrineMysqlRepository impleme
      */
     public function findById (int $id)
     {
-        return true;
+        //This is fake return with demo purposes.
+        $rentalStatus = new RentalStatus();
+        $rentalStatus->setName('Confirmed');
+
+        return $rentalStatus;
     }
 }

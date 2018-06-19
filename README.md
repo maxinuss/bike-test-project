@@ -1,7 +1,7 @@
 # bike-test-project
 
 #### Folder structure
-This project is built using a DDD approach. 
+This project is built using Docker and PHP 7.2 with a DDD approach. 
 This leads to three main folders: (https://en.wikipedia.org/wiki/Domain-driven_design)
 * *Application*: services to interact with the domain of the application.
 * *Domain*: entities, domain exceptions and interfaces to handle domain layer.
@@ -26,4 +26,11 @@ docker exec -it bike-php-container /bin/sh
 Inside Docker go to /var/www/html and run:
 ```
 composer install
+```
+
+### Unit Testing
+Inside Docker, run this command in project root folder (/var/www/html)
+```
+./vendor/phpunit/phpunit/phpunit --verbose tests_UnitTest_Rental
+Service_RentalServiceTest
 ```
