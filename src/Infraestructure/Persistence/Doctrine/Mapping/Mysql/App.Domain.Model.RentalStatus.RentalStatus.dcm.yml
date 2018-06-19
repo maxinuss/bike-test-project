@@ -1,0 +1,3 @@
+App\Domain\Molde\RentalStatus\RentalStatus:
+#Doctrine database definition
+#Not included in this example

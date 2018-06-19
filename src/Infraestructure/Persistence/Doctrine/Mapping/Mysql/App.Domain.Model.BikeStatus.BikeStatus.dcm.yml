@@ -1,0 +1,3 @@
+App\Domain\Molde\BikeStatus\BikeStatus:
+#Doctrine database definition
+#Not included in this example

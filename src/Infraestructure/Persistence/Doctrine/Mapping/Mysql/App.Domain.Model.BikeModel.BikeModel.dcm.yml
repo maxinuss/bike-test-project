@@ -1,0 +1,3 @@
+App\Domain\Molde\BikeModel\BikeModel:
+#Doctrine database definition
+#Not included in this example
