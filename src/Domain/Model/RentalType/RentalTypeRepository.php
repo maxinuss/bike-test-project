@@ -8,9 +8,8 @@ interface RentalTypeRepository
     /**
      * @param string $name
      * @param float $price
-     * @param float $percentDiscount
      */
-    public function add(string $name, float $price, float $percentDiscount);
+    public function add(string $name, float $price);
 
     /**
      * @param int $id

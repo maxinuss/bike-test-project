@@ -14,9 +14,8 @@ class FakeDoctrineRentalTypeRepository extends DoctrineMysqlRepository implement
     /**
      * @param string $name
      * @param float $price
-     * @param float $discount
      */
-    public function add(string $name, float $price, float $discount)
+    public function add(string $name, float $price)
     {
         return true;
     }

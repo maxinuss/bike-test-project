@@ -20,11 +20,6 @@ class RentalType
      */
     private $price;
 
-    /**
-     * @var float $discount
-     */
-    private $percentDiscount;
-
     public function __construct()
     {
     }
@@ -71,23 +66,5 @@ class RentalType
     public function getPrice() : float
     {
         return $this->price;
-    }
-
-    /**
-     * @param float $discount
-     * @return RentalType
-     */
-    public function setPercentDiscount(float $percentDiscount) : RentalType
-    {
-        $this->percentDiscount = $percentDiscount;
-        return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getPercentDiscount() : float
-    {
-        return $this->percentDiscount;
     }
 }

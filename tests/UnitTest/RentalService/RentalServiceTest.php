@@ -17,7 +17,6 @@ class RentalServiceTest extends TestCase
         $rentalType = new RentalType();
         $rentalType->setName('Hour');
         $rentalType->setPrice(5.00);
-        $rentalType->setPercentDiscount(0.00);
 
         $rentalService = new RentalService();
         $response = $rentalService->rent($this->getBike(), $this->getCustomer(), $rentalType);
@@ -30,7 +29,6 @@ class RentalServiceTest extends TestCase
         $rentalType = new RentalType();
         $rentalType->setName('Day');
         $rentalType->setPrice(20.00);
-        $rentalType->setPercentDiscount(0.00);
 
         $rentalService = new RentalService();
         $response = $rentalService->rent($this->getBike(), $this->getCustomer(), $rentalType);
@@ -43,10 +41,29 @@ class RentalServiceTest extends TestCase
         $rentalType = new RentalType();
         $rentalType->setName('Week');
         $rentalType->setPrice(60.00);
-        $rentalType->setPercentDiscount(0.00);
 
         $rentalService = new RentalService();
         $response = $rentalService->rent($this->getBike(), $this->getCustomer(), $rentalType);
+
+        $this->assertTrue($response);
+    }
+
+    public function testRentalServiceByFamilyPromotion()
+    {
+        $rentalType1 = new RentalType();
+        $rentalType1->setName('Week');
+        $rentalType1->setPrice(60.00);
+
+        $rentalType2 = new RentalType();
+        $rentalType2->setName('Day');
+        $rentalType2->setPrice(20.00);
+
+        $rentalType3 = new RentalType();
+        $rentalType3->setName('Week');
+        $rentalType3->setPrice(60.00);
+
+        $rentalService = new RentalService();
+        $response = $rentalService->rentByGroup([$this->getBike(), $this->getBike(), $this->getBike()], $this->getCustomer(), [$rentalType1, $rentalType2, $rentalType3]);
 
         $this->assertTrue($response);
     }

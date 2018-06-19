@@ -74,7 +74,7 @@ class RentalService
             $rental->setRentalType($rentalType);
 
             $payment = new Payment();
-            $paymentResponse = $payment->make($rentalType);
+            $paymentResponse = $payment->make($rentalType->getPrice());
 
             if($paymentResponse) {
                 return $this->fakeDoctrineRentalRepository->add($bike, $customer, $rentalType);
@@ -85,5 +85,56 @@ class RentalService
         } catch (\Exception $e){
             echo $e->getMessage();
         }
+    }
+
+    /**
+     * @param Array $bikes
+     * @param Customer $customer
+     * @param Array $rentalTypes
+     * @return bool
+     */
+    public function rentByGroup(Array $bikes, Customer $customer, Array $rentalTypes)
+    {
+        try {
+            $amount = 0;
+
+            for($i = 0; $i < count($bikes); $i++) {
+                $rentalStatus = $this->fakeDoctrineRentalStatusRepository->findById(RentalStatus::CONFIRMED);
+
+                $rental = new Rental();
+                $rental->setBike($bikes[$i]);
+                $rental->setCustomer($customer);
+                $rental->setRentalStatus($rentalStatus);
+                $rental->setRentalType($rentalTypes[$i]);
+
+                $amount += $rentalTypes[$i]->getPrice();
+            }
+
+            if(count($bikes) >= 3) {
+                $amount = $this->applyDiscount($amount);
+            }
+
+            $payment = new Payment();
+            $paymentResponse = $payment->make($amount);
+
+            if($paymentResponse) {
+                for($i = 0; $i < count($bikes); $i++) {
+                    $response = $this->fakeDoctrineRentalRepository->add($bikes[$i], $customer, $rentalTypes[$i]);
+                }
+
+                if($response) {
+                    return true;
+                }
+            } else {
+                return false;
+            }
+
+        } catch (\Exception $e){
+            echo $e->getMessage();
+        }
+    }
+
+    private function applyDiscount($amount) {
+        return $amount * 0.7;
     }
 }
