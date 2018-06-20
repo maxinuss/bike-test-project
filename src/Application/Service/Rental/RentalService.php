@@ -49,6 +49,8 @@ class RentalService
         try {
             $amount = 0;
 
+            $this->fakeDoctrineRentalRepository->beginTransaction();
+
             for($i = 0; $i < count($bikes); $i++) {
                 $rentalStatus = $this->fakeDoctrineRentalStatusRepository->findById(RentalStatus::CONFIRMED);
 
@@ -75,9 +77,11 @@ class RentalService
                 }
 
                 if($response) {
+                    $this->fakeDoctrineRentalRepository->commit();
                     return true;
                 }
             } else {
+                $this->fakeDoctrineRentalRepository->rollback();
                 return false;
             }
 
@@ -86,7 +90,12 @@ class RentalService
         }
     }
 
-    private function applyDiscount($amount) {
+    /**
+     * @param $amount
+     * @return float
+     */
+    private function applyDiscount($amount) : float
+    {
         return $amount * 0.7;
     }
 }

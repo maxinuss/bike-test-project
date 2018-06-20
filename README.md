@@ -23,13 +23,13 @@ docker run --name bike-php-container  -p 5720:80 -v C:\xampp\htdocs\test-project
 ```
 docker exec -it bike-php-container /bin/sh
 ```
-Inside Docker go to /var/www/html and run:
+Inside Docker Container go to /var/www/html and run:
 ```
 composer install
 ```
 
 ### Unit Testing
-Inside Docker, run this command in project root folder (/var/www/html)
+Inside Docker Container, run this command in project root folder (/var/www/html)
 ```
 ./vendor/phpunit/phpunit/phpunit --verbose tests_UnitTest_RentalService_RentalServiceTest
 ```

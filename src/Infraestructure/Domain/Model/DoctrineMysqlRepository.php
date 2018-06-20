@@ -8,5 +8,24 @@ namespace App\Infraestructure\Domain\Model;
  * */
 class DoctrineMysqlRepository
 {
- //@TODO: Code here =-)
+    public function beginTransaction()
+    {
+        //@TODO: Code here =-)
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function commit()
+    {
+        //@TODO: Code here =-)
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rollback()
+    {
+        //@TODO: Code here =-)
+    }
 }
