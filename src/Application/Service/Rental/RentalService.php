@@ -37,7 +37,7 @@ class RentalService
      * @param Array $bikes
      * @param Customer $customer
      * @param Array $rentalTypes
-     * @param int $period
+     * @param Array $periods
      * @return bool
      */
     public function rent(Array $bikes, Customer $customer, Array $rentalTypes, Array $periods)

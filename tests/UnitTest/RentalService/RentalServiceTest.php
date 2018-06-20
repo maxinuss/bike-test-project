@@ -68,7 +68,7 @@ class RentalServiceTest extends TestCase
         $this->assertTrue($response);
     }
 
-    public function testRentalServiceByWeekNeedToFail()
+    public function testRentalServiceByWeekWillFail()
     {
         $rentalType = new RentalType();
         $rentalType->setName('Week');
