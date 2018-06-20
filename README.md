@@ -31,6 +31,5 @@ composer install
 ### Unit Testing
 Inside Docker, run this command in project root folder (/var/www/html)
 ```
-./vendor/phpunit/phpunit/phpunit --verbose tests_UnitTest_Rental
-Service_RentalServiceTest
+./vendor/phpunit/phpunit/phpunit --verbose tests_UnitTest_RentalService_RentalServiceTest
 ```
